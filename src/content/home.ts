@@ -25,12 +25,12 @@ export type IconKey =
   | "sustainability";
 
 export const solutions: { title: string; body: string; icon: IconKey; href: string; featured?: boolean }[] = [
-  { title: "ESG", icon: "esg", featured: true, href: "/contact", body: "Data-driven ESG solutions for measurable environmental and sustainability performance." },
-  { title: "Circular Economy", icon: "circular", href: "/contact", body: "Technology-enabled circularity solutions that help businesses move from linear to circular systems." },
-  { title: "EPR", icon: "epr", href: "/contact", body: "Digital solutions supporting extended producer responsibility and compliance." },
-  { title: "Carbon & Net Zero", icon: "carbon", href: "/contact", body: "Carbon measurement, tracking and pathways toward net-zero goals." },
-  { title: "Climate Intelligence", icon: "climate", href: "/contact", body: "Data and AI-powered insights for better sustainability decisions." },
-  { title: "Sustainable Engagement", icon: "engagement", href: "/karmaverse", body: "Tools that turn sustainability from an obligation into everyday participation." },
+  { title: "ESG", icon: "esg", featured: true, href: "/solutions/esg", body: "Data-driven ESG solutions for measurable environmental and sustainability performance." },
+  { title: "Circular Economy", icon: "circular", href: "/solutions/circular-economy", body: "Technology-enabled circularity solutions that help businesses move from linear to circular systems." },
+  { title: "EPR", icon: "epr", href: "/solutions/epr", body: "Digital solutions supporting extended producer responsibility and compliance." },
+  { title: "Carbon & Net Zero", icon: "carbon", href: "/solutions/carbon-net-zero", body: "Carbon measurement, tracking and pathways toward net-zero goals." },
+  { title: "Climate Intelligence", icon: "climate", href: "/solutions/climate-intelligence", body: "Data and AI-powered insights for better sustainability decisions." },
+  { title: "Sustainable Engagement", icon: "engagement", href: "/solutions/sustainable-engagement", body: "Tools that turn sustainability from an obligation into everyday participation." },
 ];
 
 export const visionForces: { label: string; icon: IconKey; highlight?: boolean }[] = [

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1E7F57"/>
+      <stop offset=".55" stop-color="#2BD08B"/>
+      <stop offset="1" stop-color="#C8F26A"/>
+    </linearGradient>
+    <radialGradient id="coin" cx="35%" cy="30%" r="80%">
+      <stop offset="0" stop-color="#FFF7C2"/>
+      <stop offset=".5" stop-color="#F2D04B"/>
+      <stop offset="1" stop-color="#C9A21E"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <!-- network of people forming a leaf -->
+  <g stroke="#05100C" stroke-opacity=".28" stroke-width="3">
+    <path d="M560 760L700 600 820 470 960 330 1100 220M700 600L600 470M820 470L720 330M960 330L880 220M700 600L860 640M820 470L980 500M960 330L1110 360M600 470L520 560M720 330L640 380M560 760L760 760M860 640L980 500 1110 360 1180 300"/>
+  </g>
+  <g fill="#05100C">
+    <circle cx="560" cy="760" r="20"/><circle cx="700" cy="600" r="18"/><circle cx="820" cy="470" r="18"/>
+    <circle cx="960" cy="330" r="18"/><circle cx="1100" cy="220" r="20"/><circle cx="600" cy="470" r="14"/>
+    <circle cx="720" cy="330" r="14"/><circle cx="880" cy="220" r="14"/><circle cx="860" cy="640" r="14"/>
+    <circle cx="980" cy="500" r="14"/><circle cx="1110" cy="360" r="14"/><circle cx="520" cy="560" r="12"/>
+    <circle cx="640" cy="380" r="12"/><circle cx="760" cy="760" r="12"/><circle cx="1180" cy="300" r="12"/>
+  </g>
+  <!-- people heads above nodes -->
+  <g fill="#F5F2EA">
+    <circle cx="560" cy="760" r="8"/><circle cx="820" cy="470" r="7"/><circle cx="1100" cy="220" r="8"/><circle cx="700" cy="600" r="7"/><circle cx="960" cy="330" r="7"/>
+  </g>
+  <!-- leaf outline -->
+  <path d="M540 790C480 520 700 230 1160 180 1220 520 960 800 540 790z" fill="none" stroke="#F5F2EA" stroke-width="6" stroke-dasharray="2 16" stroke-linecap="round"/>
+  <!-- KarmaCoins -->
+  <g transform="translate(1200 640)">
+    <ellipse cx="0" cy="34" rx="110" ry="30" fill="#05100C" fill-opacity=".18"/>
+    <circle r="100" fill="url(#coin)" stroke="#8A6D0E" stroke-width="6"/>
+    <circle r="72" fill="none" stroke="#8A6D0E" stroke-opacity=".5" stroke-width="5"/>
+    <path d="M-10 -40C-40 -10 -40 30 0 50 40 30 40 -10 10 -40 4 -10 -4 -10 -10 -40z" fill="#1E7F57"/>
+  </g>
+  <g transform="translate(1340 470) scale(.55)">
+    <circle r="100" fill="url(#coin)" stroke="#8A6D0E" stroke-width="8"/>
+    <path d="M-10 -40C-40 -10 -40 30 0 50 40 30 40 -10 10 -40 4 -10 -4 -10 -10 -40z" fill="#1E7F57"/>
+  </g>
+  <g transform="translate(1060 830) scale(.4)">
+    <circle r="100" fill="url(#coin)" stroke="#8A6D0E" stroke-width="10"/>
+  </g>
+  <!-- sparkles -->
+  <g fill="#F5F2EA">
+    <path d="M1380 360l8 22 22 8-22 8-8 22-8-22-22-8 22-8z"/>
+    <path d="M1460 640l6 16 16 6-16 6-6 16-6-16-16-6 16-6z"/>
+    <path d="M300 240l6 16 16 6-16 6-6 16-6-16-16-6 16-6z"/>
+  </g>
+</svg>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <defs>
+    <radialGradient id="bg" cx="70%" cy="35%" r="90%">
+      <stop offset="0" stop-color="#123526"/>
+      <stop offset=".55" stop-color="#0A1C15"/>
+      <stop offset="1" stop-color="#05100C"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#2BD08B" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#2BD08B" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1E7F57"/>
+      <stop offset="1" stop-color="#0E2A1F"/>
+    </linearGradient>
+    <linearGradient id="loop" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C8F26A"/>
+      <stop offset="1" stop-color="#2BD08B"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <!-- circuit traces -->
+  <g fill="none" stroke="#2BD08B" stroke-opacity=".28" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 180h220l60 60h240"/><path d="M0 300h140l40-40h200"/><path d="M0 820h260l70-70h180"/>
+    <path d="M1600 140h-260l-60 60h-200"/><path d="M1600 860h-300l-50-50h-220"/><path d="M1600 700h-160l-40 40h-120"/>
+    <path d="M300 1000v-120l50-50"/><path d="M1240 0v110l-40 40"/><path d="M420 0v90l60 60h80"/>
+  </g>
+  <g fill="#C8F26A" fill-opacity=".7">
+    <circle cx="520" cy="240" r="8"/><circle cx="380" cy="260" r="8"/><circle cx="510" cy="750" r="8"/>
+    <circle cx="1080" cy="200" r="8"/><circle cx="1030" cy="810" r="8"/><circle cx="1280" cy="740" r="8"/>
+    <circle cx="350" cy="830" r="8"/><circle cx="1200" cy="150" r="8"/><circle cx="560" cy="150" r="8"/>
+  </g>
+  <circle cx="800" cy="500" r="420" fill="url(#glow)"/>
+  <!-- recovery loop -->
+  <g fill="none" stroke="url(#loop)" stroke-width="10" stroke-linecap="round">
+    <path d="M800 140a360 360 0 0 1 340 240"/>
+    <path d="M1150 620a360 360 0 0 1-350 240"/>
+    <path d="M460 620a360 360 0 0 1 0-240"/>
+  </g>
+  <g fill="#C8F26A">
+    <path d="M1162 388l-46-8 30-34z"/>
+    <path d="M786 878l30-34 10 46z"/>
+    <path d="M452 372l-24 40 44 4z"/>
+  </g>
+  <!-- laptop -->
+  <g transform="translate(560 350)">
+    <rect x="40" y="0" width="400" height="250" rx="18" fill="url(#screen)" stroke="#6FE3D6" stroke-width="4"/>
+    <rect x="62" y="22" width="356" height="206" rx="8" fill="#05100C" fill-opacity=".55"/>
+    <path d="M0 262h480l-30 34H30z" fill="#0E2A1F" stroke="#6FE3D6" stroke-width="4" stroke-linejoin="round"/>
+    <g fill="none" stroke="#C8F26A" stroke-width="5" stroke-linecap="round">
+      <path d="M140 170l50-50 40 30 70-70 50 40"/>
+    </g>
+    <circle cx="350" cy="120" r="10" fill="#C8F26A"/>
+  </g>
+  <!-- phone -->
+  <g transform="translate(1000 420) rotate(12)">
+    <rect width="110" height="200" rx="18" fill="#0E2A1F" stroke="#6FE3D6" stroke-width="4"/>
+    <rect x="12" y="20" width="86" height="150" rx="6" fill="#1E7F57" fill-opacity=".6"/>
+    <circle cx="55" cy="184" r="6" fill="#6FE3D6"/>
+  </g>
+  <!-- battery -->
+  <g transform="translate(480 520) rotate(-14)">
+    <rect width="70" height="130" rx="10" fill="#0E2A1F" stroke="#6FE3D6" stroke-width="4"/>
+    <rect x="22" y="-14" width="26" height="14" rx="3" fill="#6FE3D6"/>
+    <rect x="12" y="70" width="46" height="48" rx="4" fill="#C8F26A"/>
+  </g>
+</svg>

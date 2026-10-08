@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <defs>
+    <radialGradient id="bg" cx="65%" cy="40%" r="85%">
+      <stop offset="0" stop-color="#123526"/>
+      <stop offset=".6" stop-color="#0B1712"/>
+      <stop offset="1" stop-color="#05100C"/>
+    </radialGradient>
+    <linearGradient id="path" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6FE3D6" stop-opacity=".2"/>
+      <stop offset=".35" stop-color="#6FE3D6"/>
+      <stop offset=".7" stop-color="#2BD08B"/>
+      <stop offset="1" stop-color="#C8F26A"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#C8F26A" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#C8F26A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1060" cy="500" r="380" fill="url(#halo)"/>
+  <!-- straight "take-make-dispose" line bending into a closed loop -->
+  <path d="M60 500H700C760 500 800 470 830 430 900 330 1000 260 1110 280 1240 300 1320 410 1300 530 1280 650 1170 730 1050 720 940 710 860 630 830 560 810 520 780 500 700 500" fill="none" stroke="url(#path)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- stages along the linear part (fading out) -->
+  <g fill="#6FE3D6">
+    <circle cx="140" cy="500" r="14" fill-opacity=".25"/>
+    <circle cx="320" cy="500" r="16" fill-opacity=".45"/>
+    <circle cx="500" cy="500" r="18" fill-opacity=".7"/>
+  </g>
+  <!-- stages around the loop -->
+  <g stroke="#05100C" stroke-width="6">
+    <circle cx="1110" cy="280" r="34" fill="#C8F26A"/>
+    <circle cx="1300" cy="530" r="34" fill="#2BD08B"/>
+    <circle cx="1050" cy="720" r="34" fill="#6FE3D6"/>
+    <circle cx="870" cy="380" r="26" fill="#2BD08B"/>
+  </g>
+  <g fill="#05100C">
+    <path d="M1098 268h24v24h-24z" transform="rotate(45 1110 280)"/>
+    <path d="M1286 530l14-16 14 16-14 16z"/>
+    <circle cx="1050" cy="720" r="12"/>
+  </g>
+  <!-- direction arrow on the loop -->
+  <path d="M1236 360l26 52-58-4z" fill="#C8F26A"/>
+  <path d="M900 690l-60-8 34-48z" fill="#6FE3D6"/>
+  <!-- leaf: regenerate nature -->
+  <g transform="translate(1030 440) rotate(-30)">
+    <path d="M0 60C0 20 40-10 110 0 110 60 70 100 30 100 12 100 0 84 0 60z" fill="#C8F26A"/>
+    <path d="M10 90C40 60 70 30 100 8" fill="none" stroke="#0B1712" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

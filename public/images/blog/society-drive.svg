@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0E2A1F"/>
+      <stop offset=".55" stop-color="#1E7F57"/>
+      <stop offset="1" stop-color="#C8F26A"/>
+    </linearGradient>
+    <linearGradient id="bldg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0B1712"/>
+      <stop offset="1" stop-color="#05100C"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="1220" cy="300" r="110" fill="#E8F1CF" fill-opacity=".9"/>
+  <circle cx="1220" cy="300" r="170" fill="#E8F1CF" fill-opacity=".12"/>
+  <!-- back towers -->
+  <g fill="#0B1712" fill-opacity=".45">
+    <rect x="80" y="330" width="170" height="600"/><rect x="560" y="280" width="150" height="650"/><rect x="1380" y="360" width="160" height="570"/>
+  </g>
+  <!-- housing society towers -->
+  <g fill="url(#bldg)">
+    <rect x="220" y="400" width="240" height="560" rx="6"/>
+    <rect x="700" y="340" width="260" height="620" rx="6"/>
+    <rect x="1100" y="440" width="240" height="520" rx="6"/>
+  </g>
+  <!-- lit windows -->
+  <g fill="#C8F26A" fill-opacity=".85">
+    <rect x="250" y="440" width="40" height="30" rx="3"/><rect x="390" y="440" width="40" height="30" rx="3"/><rect x="320" y="510" width="40" height="30" rx="3"/>
+    <rect x="250" y="580" width="40" height="30" rx="3"/><rect x="390" y="650" width="40" height="30" rx="3"/><rect x="320" y="720" width="40" height="30" rx="3"/>
+    <rect x="740" y="380" width="40" height="30" rx="3"/><rect x="880" y="380" width="40" height="30" rx="3"/><rect x="810" y="450" width="40" height="30" rx="3"/>
+    <rect x="740" y="520" width="40" height="30" rx="3"/><rect x="880" y="590" width="40" height="30" rx="3"/><rect x="810" y="660" width="40" height="30" rx="3"/>
+    <rect x="1130" y="480" width="40" height="30" rx="3"/><rect x="1270" y="480" width="40" height="30" rx="3"/><rect x="1200" y="550" width="40" height="30" rx="3"/>
+    <rect x="1270" y="620" width="40" height="30" rx="3"/><rect x="1130" y="690" width="40" height="30" rx="3"/>
+  </g>
+  <g fill="#6FE3D6" fill-opacity=".35">
+    <rect x="320" y="440" width="40" height="30" rx="3"/><rect x="250" y="650" width="40" height="30" rx="3"/><rect x="810" y="380" width="40" height="30" rx="3"/>
+    <rect x="880" y="520" width="40" height="30" rx="3"/><rect x="1200" y="480" width="40" height="30" rx="3"/><rect x="1270" y="690" width="40" height="30" rx="3"/>
+  </g>
+  <!-- ground -->
+  <rect y="880" width="1600" height="120" fill="#05100C"/>
+  <!-- three segregation bins: wet, dry, hazardous -->
+  <g transform="translate(560 720)">
+    <g>
+      <rect x="0" y="20" width="130" height="170" rx="14" fill="#2BD08B"/>
+      <rect x="-10" y="0" width="150" height="30" rx="10" fill="#1E7F57"/>
+      <path d="M45 90c0-20 20-34 50-30 0 30-14 50-34 50-10 0-16-8-16-20z" fill="#05100C" fill-opacity=".55"/>
+    </g>
+    <g transform="translate(180 0)">
+      <rect x="0" y="20" width="130" height="170" rx="14" fill="#6FE3D6"/>
+      <rect x="-10" y="0" width="150" height="30" rx="10" fill="#3BB3A7"/>
+      <rect x="40" y="70" width="50" height="70" rx="8" fill="none" stroke="#05100C" stroke-opacity=".55" stroke-width="8"/>
+    </g>
+    <g transform="translate(360 0)">
+      <rect x="0" y="20" width="130" height="170" rx="14" fill="#F07B5A"/>
+      <rect x="-10" y="0" width="150" height="30" rx="10" fill="#C55A3D"/>
+      <path d="M65 70l34 60H31z" fill="none" stroke="#05100C" stroke-opacity=".55" stroke-width="8" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>

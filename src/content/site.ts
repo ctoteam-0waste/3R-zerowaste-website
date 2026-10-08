@@ -6,10 +6,8 @@
 export const site = {
   name: "3R ZeroWaste",
   legalName: "3R ZeroWaste Pvt. Ltd.",
-  // Set NEXT_PUBLIC_SITE_URL once the real domain is connected; until then Vercel's production URL is used.
-  url:
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000"),
+  // Production lives on 0waste.co.in (Hostinger). NEXT_PUBLIC_SITE_URL can override it, e.g. for a staging host.
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://0waste.co.in",
   tagline: "Turning sustainable gestures and everyday actions into measurable climate impact.",
   description:
     "Technology that transforms sustainable actions into measurable environmental and business impact.",

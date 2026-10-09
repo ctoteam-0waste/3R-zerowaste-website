@@ -11,6 +11,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { about } from "@/content/pages";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About 3RZW",
   description: "Our story, mission, approach and the people behind 3R ZeroWaste — turning everyday sustainable actions into measurable climate impact.",
 };

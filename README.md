@@ -26,9 +26,33 @@ All copy and data live in `src/content/` — components only render it.
 
 Anything in `[brackets]` is a placeholder waiting for verified data — no numbers or clients have been invented.
 
-### Blog posts & events (Markdown)
+### Blog posts & events — admin panel (no code needed)
 
-Each post is a file in `content/blog/`, each event a file in `content/events/`. The file name is the URL
+Go to **https://0waste.co.in/admin**, sign in with the admin password, and use **New blog post** / **New event**.
+Fill in the form (title, summary, cover image, date, article or event details) and click **Publish**.
+The panel saves the post to GitHub and Hostinger rebuilds the site — the page is live in about **2 minutes**
+(the editor shows "It's live" when it is). **Save draft** keeps it hidden; **Delete** removes it from the site.
+Cover photos are resized to WebP in the browser before upload (max 4 MB).
+
+How it works: `/admin` (protected by `src/middleware.ts`) → `/api/admin/items` → `src/lib/admin/store.ts`,
+which commits the Markdown file (and image) to the repo in one commit via the GitHub API. Locally, without a
+token, it writes straight to `content/` and `public/images/` so you can test.
+
+**One-time setup on Hostinger** (hPanel → Websites → 0waste.co.in → Node.js / Environment variables), then redeploy:
+
+| Variable | Value |
+| --- | --- |
+| `ADMIN_PASSWORD` | A long password for the team (share it privately) |
+| `ADMIN_SESSION_SECRET` | Any long random string (keeps sign-ins secure) |
+| `GITHUB_TOKEN` | Fine-grained GitHub token: repository `ctoteam-0waste/3R-zerowaste-website` only, permission **Contents: Read and write** |
+| `GITHUB_REPO` | `ctoteam-0waste/3R-zerowaste-website` (optional — this is the default) |
+
+Create the token at GitHub → Settings → Developer settings → Fine-grained tokens. Sign-ins last 8 hours;
+8 wrong passwords lock an address out for 15 minutes. `/admin` is excluded from search engines.
+
+### Blog posts & events (Markdown files)
+
+The panel above edits these same files. Each post is a file in `content/blog/`, each event a file in `content/events/`. The file name is the URL
 (`content/blog/epr-explained.md` → `/blog/epr-explained`). Copy `_template.md` in that folder, fill in the
 fields at the top, write the body in Markdown. Files starting with `_` and files with `draft: true` are hidden.
 
@@ -62,6 +86,13 @@ src/
   lib/                 calendar logic, hooks
 public/images/         brand, mascot layers, team photos, app screenshots
 ```
+
+## SEO
+- Every page has a title, description and canonical URL on https://0waste.co.in (`site.url` in `site.ts`).
+- Structured data (schema.org): Organization + WebSite (all pages), BlogPosting + breadcrumbs (articles), Event + breadcrumbs (events).
+- Share image: `src/app/opengraph-image.tsx` (1200×630); articles and events use their own cover when they have one.
+- `sitemap.xml` lists every page, article, event and solution; `robots.txt` blocks `/admin` and `/api/`.
+- Old WordPress URLs redirect permanently (`next.config.mjs`).
 
 ## Notes
 - **Mascot animation** = base render + 3 transparent overlay frames (blink, mouth half-open, mouth closed) swapped by CSS keyframes (`.mascot` in `globals.css`). For smoother animation later, swap `Mascot.tsx` for a Lottie/Rive file.

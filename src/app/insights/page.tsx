@@ -10,6 +10,7 @@ import { getPosts } from "@/lib/content";
 import { news, reports } from "@/content/pages";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/insights" },
   title: "Insights",
   description: "Blog, reports, research and news from 3R ZeroWaste and KarmaVerse.",
 };

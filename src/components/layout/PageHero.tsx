@@ -28,16 +28,12 @@ export function PageHero({
           <Reveal>
             <p className="eyebrow text-lime-brand">{eyebrow}</p>
           </Reveal>
-          <Reveal delay={0.05}>
-            <h1 className="max-w-[900px] font-semibold leading-[1.02] tracking-[-0.04em]" style={{ fontSize: "clamp(38px, 5vw, 72px)" }}>
-              {title}
-            </h1>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="max-w-[600px] leading-relaxed text-[#C3D1CA]" style={{ fontSize: "clamp(17px, 1.4vw, 20px)" }}>
-              {intro}
-            </p>
-          </Reveal>
+          <h1 className="max-w-[900px] font-semibold leading-[1.02] tracking-[-0.04em]" style={{ fontSize: "clamp(38px, 5vw, 72px)" }}>
+            {title}
+          </h1>
+          <p className="max-w-[600px] leading-relaxed text-[#C3D1CA]" style={{ fontSize: "clamp(17px, 1.4vw, 20px)" }}>
+            {intro}
+          </p>
           {actions && (
             <Reveal delay={0.15} className="flex flex-wrap items-center gap-3.5">
               {actions}

@@ -43,19 +43,19 @@ export function ImpactDashboard() {
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-brand" />
             </div>
           </div>
-          <dl className="grid grid-cols-[repeat(auto-fit,minmax(min(260px,100%),1fr))]">
+          <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(260px,100%),1fr))]">
             {metrics.map((m, i) => (
-              <Reveal key={m.label} delay={0.15 + i * 0.1} y={24} className="flex flex-col gap-[22px] border-b border-white/[0.07] px-7 pb-7 pt-8 transition-colors hover:bg-lime-brand/[0.035] sm:border-r">
+              <Reveal as="li" key={m.label} delay={0.15 + i * 0.1} y={24} className="flex flex-col gap-[22px] border-b border-white/[0.07] px-7 pb-7 pt-8 transition-colors hover:bg-lime-brand/[0.035] sm:border-r">
                 <span className="mono-label text-[11px] text-text-dim">{m.tag}</span>
-                <dd className="font-display font-medium leading-none tracking-[-0.04em] text-paper" style={{ fontSize: "clamp(56px, 6vw, 88px)" }}>
+                <p className="font-display font-medium leading-none tracking-[-0.04em] text-paper" style={{ fontSize: "clamp(56px, 6vw, 88px)" }}>
                   <Counter value={m.value} />
                   <sup className="relative top-[0.25em] ml-1 align-top text-[.45em] text-lime-brand">{m.suffix}</sup>
-                </dd>
+                </p>
                 <GrowBar value={m.bar} />
-                <dt className="text-base font-semibold">{m.label}</dt>
+                <p className="text-base font-semibold">{m.label}</p>
               </Reveal>
             ))}
-          </dl>
+          </ul>
         </Reveal>
       </div>
 

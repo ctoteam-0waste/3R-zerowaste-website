@@ -40,7 +40,8 @@ export function BlogIndex({ posts }: { posts: Post[] }) {
         </div>
       </section>
       {featured && (
-        <section aria-label="Featured article" className="bg-paper pb-6 pt-14 text-text">
+        <section aria-labelledby="featured-h" className="bg-paper pb-6 pt-14 text-text">
+          <h2 id="featured-h" className="sr-only">Featured article</h2>
           <div className="container-site">
             <PostCard post={featured} featured />
           </div>

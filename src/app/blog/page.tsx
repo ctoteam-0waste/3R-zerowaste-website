@@ -4,6 +4,7 @@ import { Newsletter } from "@/components/blog/Newsletter";
 import { getPosts } from "@/lib/content";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog" },
   title: "Insights & Blog",
   description: "Perspectives on ESG, circular economy, EPR, carbon and the behaviour change behind real impact — from the 3R and KarmaVerse team.",
 };

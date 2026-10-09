@@ -6,6 +6,7 @@ import { ArrowLeft, CalendarDays, Clock, MapPin } from "lucide-react";
 import { getEvent, getEvents, isPast } from "@/lib/content";
 import { dateBadge, formatRange } from "@/lib/format";
 import { Button } from "@/components/ui/Button";
+import { JsonLd, absolute, breadcrumbs } from "@/components/seo/JsonLd";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -19,7 +20,13 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const event = getEvent((await params).slug);
   if (!event) return {};
-  return { title: event.title, description: event.summary || `${event.type} · ${formatRange(event.date, event.endDate)}` };
+  const description = event.summary || `${event.type} · ${formatRange(event.date, event.endDate)}`;
+  return {
+    title: event.title,
+    description,
+    alternates: { canonical: `/events/${event.slug}` },
+    openGraph: { title: event.title, description, url: `/events/${event.slug}`, type: "website", images: event.image ? [{ url: event.image }] : undefined },
+  };
 }
 
 export default async function EventPage({ params }: Props) {
@@ -34,8 +41,27 @@ export default async function EventPage({ params }: Props) {
     event.venue && { icon: MapPin, label: event.venue },
   ].filter(Boolean) as { icon: typeof Clock; label: string }[];
 
+  const online = /online|webinar|zoom|google meet/i.test(`${event.venue} ${event.type}`);
+  const eventLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: event.title,
+    description: event.summary,
+    startDate: event.date,
+    endDate: event.endDate,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: online ? "https://schema.org/OnlineEventAttendanceMode" : "https://schema.org/OfflineEventAttendanceMode",
+    location: online
+      ? { "@type": "VirtualLocation", url: event.registerUrl || absolute(`/events/${event.slug}`) }
+      : { "@type": "Place", name: event.venue || "Gurugram", address: { "@type": "PostalAddress", addressLocality: event.venue || "Gurugram", addressCountry: "IN" } },
+    image: event.image ? [absolute(event.image)] : undefined,
+    organizer: { "@type": "Organization", name: "3R ZeroWaste", url: absolute("/") },
+    offers: event.registerUrl ? { "@type": "Offer", url: event.registerUrl, price: 0, priceCurrency: "INR", availability: "https://schema.org/InStock" } : undefined,
+  };
+
   return (
     <>
+      <JsonLd data={[eventLd, breadcrumbs([{ name: "Home", path: "/" }, { name: "Events", path: "/events" }, { name: event.title, path: `/events/${event.slug}` }])]} />
       <section aria-labelledby="event-title" className="relative isolate -mt-[76px] overflow-hidden bg-ink-2 pb-16 pt-[calc(76px+clamp(56px,7vw,96px))] text-[#F2F6F3]">
         <div aria-hidden className="absolute -bottom-60 -left-60 -z-10 h-[640px] w-[640px] rounded-full bg-[radial-gradient(circle,rgba(200,242,106,.12),transparent_65%)]" />
         <div className="container-site flex max-w-[960px] flex-col gap-6">

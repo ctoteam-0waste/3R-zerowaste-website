@@ -11,6 +11,7 @@ import { metrics } from "@/content/home";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/karmaverse" },
   title: "KarmaVerse",
   description: "KarmaVerse is India's sustainability rewards ecosystem by 3RZeroWaste — turn sustainable actions into KarmaCoins and real rewards.",
 };

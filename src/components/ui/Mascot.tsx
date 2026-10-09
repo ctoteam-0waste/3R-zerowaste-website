@@ -22,13 +22,13 @@ export function Mascot({
       {...(decorative ? { "aria-hidden": true } : { role: "img", "aria-label": label })}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/images/mascot/base.webp" alt="" width={720} height={800} />
+      <img src="/images/mascot/base-sm.webp" alt="" width={400} height={444} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="blink" src="/images/mascot/blink.png" alt="" style={{ animationDelay: `${blinkDelay}s` }} />
+      <img className="blink" src="/images/mascot/blink-sm.webp" alt="" style={{ animationDelay: `${blinkDelay}s` }} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="mouth-a" src="/images/mascot/mouthA.png" alt="" />
+      <img className="mouth-a" src="/images/mascot/mouthA-sm.webp" alt="" />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="mouth-b" src="/images/mascot/mouthB.png" alt="" />
+      <img className="mouth-b" src="/images/mascot/mouthB-sm.webp" alt="" />
     </div>
   );
 }

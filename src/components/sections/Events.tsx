@@ -61,6 +61,7 @@ export function Events({ upcoming, past, heading = true }: { upcoming: CompanyEv
         />
         )}
 
+        {!heading && <h2 className="sr-only">Sustainability calendar and 3R events</h2>}
         <LiveCalendar />
         <p className="mono-label -mt-6 text-[10px] text-[#6F8279]">Global observances &amp; UN climate summits — fetched live from Wikidata. {hasEvents && "3R & KarmaVerse events below."}</p>
 

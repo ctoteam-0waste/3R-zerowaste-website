@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
 import { site } from "@/content/site";
@@ -28,6 +28,12 @@ export function Hero() {
   const { video } = site.hero;
   const hasVideo = Boolean(video.mp4 || video.webm);
   const [earthReady, setEarthReady] = useState(false);
+  // WebGL globe only on larger screens without data-saver — phones keep the lightweight CSS planet
+  const [showEarth, setShowEarth] = useState(false);
+  useEffect(() => {
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
+    setShowEarth(window.matchMedia("(min-width: 768px)").matches && !saveData);
+  }, []);
 
   function onMove(e: MouseEvent<HTMLElement>) {
     if (reduce || !ref.current) return;
@@ -59,7 +65,7 @@ export function Hero() {
             <div className="planet-lat" />
             <div className="planet-term" />
           </div>
-          <Earth className="absolute inset-0" onReady={() => setEarthReady(true)} />
+          {showEarth && <Earth className="absolute inset-0" onReady={() => setEarthReady(true)} />}
           <div className="orbit orbit-a"><span className="sat" /></div>
           <div className="orbit orbit-b"><span className="sat" /></div>
         </div>
@@ -117,11 +123,9 @@ export function Hero() {
             </span>
           ))}
         </h1>
-        <FadeUp delay={0.7}>
-          <p className="max-w-[560px] leading-relaxed text-[#C3D1CA]" style={{ fontSize: "clamp(17px, 1.4vw, 20px)" }}>
-            {site.description}
-          </p>
-        </FadeUp>
+        <p className="max-w-[560px] leading-relaxed text-[#C3D1CA]" style={{ fontSize: "clamp(17px, 1.4vw, 20px)" }}>
+          {site.description}
+        </p>
         <FadeUp delay={0.85} className="flex flex-wrap gap-3.5">
           <Button href="/solutions" arrow>
             Explore Solutions

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { solutionAreas } from "@/content/pages";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/solutions" },
   title: "Solutions",
   description: "KarmaVerse, community solutions, enterprise sustainability and circular economy solutions from 3R ZeroWaste.",
 };

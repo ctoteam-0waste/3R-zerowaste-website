@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { Vision } from "@/components/sections/Vision";
 import { ImpactDashboard } from "@/components/sections/ImpactDashboard";
@@ -16,6 +17,8 @@ import { getEvents } from "@/lib/content";
 
 /** Re-check content every hour so events move from Upcoming to Past on their own. */
 export const revalidate = 3600;
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function HomePage() {
   const { upcoming, past } = getEvents();

@@ -7,6 +7,7 @@ import { getPost, getPosts } from "@/lib/content";
 import { formatDate } from "@/lib/format";
 import { PostCard, PostCover } from "@/components/blog/PostCard";
 import { Newsletter } from "@/components/blog/Newsletter";
+import { JsonLd, absolute, breadcrumbs, publisher } from "@/components/seo/JsonLd";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -22,7 +23,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.title,
     description: post.summary,
-    openGraph: { title: post.title, description: post.summary, type: "article", publishedTime: post.date, images: post.image ? [{ url: post.image }] : undefined },
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      type: "article",
+      url: `/blog/${post.slug}`,
+      publishedTime: post.date,
+      section: post.category,
+      authors: post.author ? [post.author] : undefined,
+      images: post.image ? [{ url: post.image }] : undefined,
+    },
+    twitter: { card: "summary_large_image", title: post.title, description: post.summary, images: post.image ? [post.image] : undefined },
   };
 }
 
@@ -35,6 +47,29 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.title,
+            description: post.summary,
+            datePublished: post.date,
+            dateModified: post.date,
+            articleSection: post.category,
+            author: { "@type": post.author && !/team/i.test(post.author) ? "Person" : "Organization", name: post.author || "3R ZeroWaste" },
+            publisher,
+            image: post.image ? [absolute(post.image)] : undefined,
+            mainEntityOfPage: absolute(`/blog/${post.slug}`),
+            inLanguage: "en-IN",
+          },
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+        ]}
+      />
       <section aria-labelledby="post-title" className="relative isolate -mt-[76px] overflow-hidden bg-ink pb-16 pt-[calc(76px+clamp(56px,7vw,96px))] text-[#F2F6F3]">
         <span aria-hidden className="absolute right-[6%] top-[10%] -z-10 h-[380px] w-[380px] rounded-full bg-emerald-brand opacity-40 blur-[40px]" />
         <div className="container-site flex max-w-[960px] flex-col gap-6">

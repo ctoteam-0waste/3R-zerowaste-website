@@ -3,6 +3,7 @@ import { getEvents } from "@/lib/content";
 import { Events } from "@/components/sections/Events";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/events" },
   title: "Events",
   description: "Drives, workshops and conversations with the 3R and KarmaVerse community — on the ground and online.",
 };

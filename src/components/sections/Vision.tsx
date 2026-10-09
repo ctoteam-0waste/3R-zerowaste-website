@@ -60,10 +60,10 @@ export function Vision() {
             </Reveal>
             <p
               ref={ref}
-              aria-label="It's an opportunity to build smarter businesses, stronger communities and a healthier planet."
               className="flex flex-wrap gap-x-[0.24em] font-display font-medium leading-[1.06] tracking-[-0.035em]"
               style={{ fontSize: "clamp(34px, 4.6vw, 68px)" }}
             >
+              <span className="sr-only">It&apos;s an opportunity to build smarter businesses, stronger communities and a healthier planet.</span>
               {statement.map((s, i) =>
                 reduce ? (
                   <span key={i} aria-hidden className={`relative z-0 ${s.accent === "green" ? "text-emerald-deep" : ""}`}>

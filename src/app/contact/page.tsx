@@ -10,6 +10,7 @@ import { InstagramIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact",
   description: "Contact 3R ZeroWaste — email, phone, office address in IMT Manesar, Gurugram, and all our platforms.",
 };

@@ -13,6 +13,7 @@ import { impactGallery } from "@/content/home";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/impact" },
   title: "Impact",
   description: "Environmental, social and community impact from 3R ZeroWaste programmes across businesses, housing societies and schools.",
 };

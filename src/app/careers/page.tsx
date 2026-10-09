@@ -8,6 +8,7 @@ import { openPositions } from "@/content/pages";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/careers" },
   title: "Careers",
   description: "Open positions at 3R ZeroWaste — build technology and programmes that turn everyday actions into measurable climate impact.",
 };

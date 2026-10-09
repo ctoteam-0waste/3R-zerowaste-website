@@ -7,7 +7,7 @@ const config: Config = {
       colors: {
         ink: { DEFAULT: "#05100C", 2: "#0A1C15", 3: "#030A07" },
         forest: "#0E2A1F",
-        emerald: { brand: "#2BD08B", deep: "#1E7F57" },
+        emerald: { brand: "#2BD08B", deep: "#18704C" },
         lime: { brand: "#C8F26A" },
         cyan: { brand: "#6FE3D6" },
         paper: { DEFAULT: "#F5F2EA", 2: "#ECE7DB" },

@@ -41,7 +41,7 @@ export function Events({ upcoming, past, heading = true }: { upcoming: CompanyEv
 
   return (
     <section id="events" aria-labelledby={heading ? "ev-h" : "events-title"} className="section-pad relative overflow-hidden bg-ink-2 text-[#F2F6F3]">
-      <div aria-hidden className="absolute -bottom-60 -left-60 h-[640px] w-[640px] rounded-full bg-[radial-gradient(circle,rgba(200,242,106,.12),transparent_65%)]" />
+      <div aria-hidden className="pointer-events-none absolute -left-60 top-[30%] h-[640px] w-[640px] rounded-full bg-[radial-gradient(circle,rgba(200,242,106,.12),transparent_65%)]" />
       <div className="container-site relative flex flex-col gap-12">
         {heading && (
         <SectionHeading
@@ -63,7 +63,7 @@ export function Events({ upcoming, past, heading = true }: { upcoming: CompanyEv
 
         {!heading && <h2 className="sr-only">Sustainability calendar and 3R events</h2>}
         <LiveCalendar />
-        <p className="mono-label -mt-6 text-[10px] text-[#6F8279]">Global observances &amp; UN climate summits — fetched live from Wikidata. {hasEvents && "3R & KarmaVerse events below."}</p>
+        <p className="mono-label -mt-6 text-[10px] text-[#93A59C]">Global observances &amp; UN climate summits — fetched live from Wikidata. {hasEvents && "3R & KarmaVerse events below."}</p>
 
         {/* list appears automatically once a real event file exists in /content/events */}
         {hasEvents && (

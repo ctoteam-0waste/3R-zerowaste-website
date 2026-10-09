@@ -21,8 +21,8 @@ export function PageHero({
 }) {
   return (
     <section className="relative isolate -mt-[76px] overflow-hidden bg-ink pb-[clamp(56px,7vw,96px)] pt-[calc(76px+clamp(64px,8vw,112px))] text-[#F2F6F3]">
-      <span aria-hidden className="absolute right-[6%] top-[8%] -z-10 h-[380px] w-[380px] rounded-full bg-emerald-brand opacity-40 blur-[60px]" />
-      <span aria-hidden className="absolute right-[28%] top-[46%] -z-10 h-[220px] w-[220px] rounded-full bg-lime-brand opacity-20 blur-[50px]" />
+      <span aria-hidden className="absolute right-[6%] top-[8%] -z-10 h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(43,208,139,.55)_0%,rgba(43,208,139,.18)_45%,transparent_70%)]" />
+      <span aria-hidden className="absolute right-[28%] top-[46%] -z-10 h-[220px] w-[220px] rounded-full bg-[radial-gradient(circle,rgba(200,242,106,.45)_0%,rgba(200,242,106,.12)_45%,transparent_70%)]" />
       <div className="container-site flex flex-wrap items-center gap-x-16 gap-y-12">
         <div className="flex min-w-0 flex-[1_1_520px] flex-col gap-7">
           <Reveal>

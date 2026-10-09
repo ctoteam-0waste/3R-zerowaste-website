@@ -15,9 +15,9 @@ const config: Config = {
         text: { DEFAULT: "#0B1712", muted: "#4A5852", dim: "#9DB0A7" },
       },
       fontFamily: {
-        display: ['"Space Grotesk Variable"', '"Helvetica Neue"', "Arial", "sans-serif"],
-        sans: ['"Manrope Variable"', "system-ui", "-apple-system", '"Segoe UI"', "sans-serif"],
-        mono: ['"JetBrains Mono"', "ui-monospace", "Menlo", "monospace"],
+        display: ["var(--font-display)", '"Helvetica Neue"', "Arial", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "-apple-system", '"Segoe UI"', "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "Menlo", "monospace"],
       },
       maxWidth: { site: "1280px" },
       keyframes: {

@@ -1,3 +1,18 @@
+/* ---------- Brand fonts (self-hosted, Latin subset, preloaded in layout.tsx) ----------
+   The "Fallback" faces are metric-matched Arial, so text doesn't shift when the real font swaps in. */
+@font-face { font-family: "Space Grotesk"; src: url("/fonts/space-grotesk.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+@font-face { font-family: "Space Grotesk Fallback"; src: local("Arial"); ascent-override: 88.78%; descent-override: 26.34%; line-gap-override: 0%; size-adjust: 110.84%; }
+@font-face { font-family: "Manrope"; src: url("/fonts/manrope.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Manrope Fallback"; src: local("Arial"); ascent-override: 106.45%; descent-override: 29.96%; line-gap-override: 0%; size-adjust: 100.14%; }
+@font-face { font-family: "JetBrains Mono"; src: url("/fonts/jetbrains-mono-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("/fonts/jetbrains-mono-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "JetBrains Mono Fallback"; src: local("Arial"); ascent-override: 77.57%; descent-override: 22.82%; line-gap-override: 0%; size-adjust: 131.49%; }
+:root {
+  --font-display: "Space Grotesk", "Space Grotesk Fallback";
+  --font-sans: "Manrope", "Manrope Fallback";
+  --font-mono: "JetBrains Mono", "JetBrains Mono Fallback";
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -41,7 +56,6 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: shimmer 6s ease-in-out infinite;
   }
 
   .glass {
@@ -59,14 +73,14 @@
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes spinCentered { to { transform: translate(-50%, -50%) rotate(360deg); } }
 @keyframes dashMove { to { stroke-dashoffset: -44; } }
-@keyframes drip { to { top: 110%; } }
+@keyframes drip { from { transform: translateY(0); } to { transform: translateY(375%); } }
 @keyframes mote {
   0% { transform: translateY(0); opacity: 0; }
   10% { opacity: 0.8; }
   80% { opacity: 0.5; }
   100% { transform: translateY(-900px) translateX(40px); opacity: 0; }
 }
-@keyframes travel { from { left: 0; } to { left: calc(100% - 60px); } }
+@keyframes travel { from { transform: translateX(0); } to { transform: translateX(calc(100% - 60px)); } }
 @keyframes breathe { 0%, 100% { transform: scale(0.96); opacity: 0.5; } 50% { transform: scale(1.04); opacity: 1; } }
 @keyframes ring { from { transform: scale(1); opacity: 0.9; } to { transform: scale(1.9); opacity: 0; } }
 @keyframes appScroll {
@@ -113,8 +127,9 @@
 /* ---------- misc animated bits ---------- */
 .dash-anim { stroke-dasharray: 4 7; animation: dashMove 3s linear infinite; }
 .spin-slow { animation: spinCentered 40s linear infinite; }
-.flow-glow::after { content: ""; position: absolute; top: -3px; left: 0; width: 60px; height: 7px; border-radius: 7px;
-  background: radial-gradient(closest-side, #c8f26a, transparent); animation: travel 4s cubic-bezier(.6,0,.4,1) infinite; }
+/* full-width layer with a 60px glow on its left edge, moved by transform (GPU) rather than `left` */
+.flow-glow::after { content: ""; position: absolute; top: -3px; left: 0; width: 100%; height: 7px;
+  background: radial-gradient(closest-side, #c8f26a, transparent) 0 0 / 60px 7px no-repeat; animation: travel 4s cubic-bezier(.6,0,.4,1) infinite; }
 .node-dash::after { content: ""; position: absolute; inset: 8px; border-radius: 50%; border: 1px dashed rgba(200,242,106,.35); animation: spin 18s linear infinite; }
 .core-rings::before, .core-rings::after { content: ""; position: absolute; inset: -14%; border-radius: 50%; border: 1px solid rgba(111,227,214,.18); animation: breathe 4s ease-in-out infinite; }
 .core-rings::after { inset: -30%; border-color: rgba(111,227,214,.08); animation-delay: 1.2s; }
@@ -166,3 +181,14 @@
 .prose-3r hr { border-color: rgba(11, 23, 18, 0.12); margin-block: 2.2em; }
 .prose-3r table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
 .prose-3r th, .prose-3r td { border-bottom: 1px solid rgba(11, 23, 18, 0.12); padding: 0.6em 0.5em; text-align: left; }
+
+/* Live-status dot: the ring scales/fades on its own layer (box-shadow animation repainted every frame) */
+.pulse-dot { position: relative; }
+.pulse-dot::after { content: ""; position: absolute; inset: 0; border-radius: 9999px; background: currentColor; color: #2bd08b; opacity: .55; animation: pulseDot 2s ease-out infinite; }
+@keyframes pulseDot { 0% { transform: scale(1); opacity: .55; } 80%, 100% { transform: scale(3.2); opacity: 0; } }
+
+/* Phones: skip purely decorative continuous animations to save CPU and battery */
+@media (max-width: 767px) {
+  .dash-anim { animation: none; }
+  .orbit { animation: none; }
+}

@@ -12,7 +12,7 @@ type RevealProps = {
   as?: "div" | "li" | "article";
 };
 
-/** Fades, lifts and brings its children into focus once, when scrolled into the viewport. */
+/** Fades and lifts its children into view once, when scrolled into the viewport (transform/opacity only, so it stays smooth on phones). */
 export function Reveal({ delay = 0, y = 36, as = "div", children, className, style }: RevealProps) {
   const reduce = useReducedMotion();
   const Comp = as === "li" ? motion.li : as === "article" ? motion.article : motion.div;
@@ -20,8 +20,8 @@ export function Reveal({ delay = 0, y = 36, as = "div", children, className, sty
     <Comp
       className={className}
       style={style}
-      initial={reduce ? false : { opacity: 0, y, scale: 0.97, filter: "blur(8px)" }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      initial={reduce ? false : { opacity: 0, y, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       // a tall top margin also counts content already scrolled past, so a fast jump never leaves it hidden
       viewport={{ once: true, margin: "400% 0px -10% 0px" }}
       transition={{ duration: 0.9, delay, ease: [0.2, 0.8, 0.2, 1] }}

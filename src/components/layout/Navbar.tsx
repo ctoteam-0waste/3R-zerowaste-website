@@ -40,7 +40,7 @@ export function Navbar() {
       className={clsx(
         "sticky top-0 z-[60] border-b transition-[background-color,border-color,backdrop-filter] duration-500",
         scrolled || open
-          ? "border-white/[0.07] bg-ink/60 backdrop-blur-xl backdrop-saturate-150"
+          ? "border-white/[0.07] bg-ink/95 md:bg-ink/60 md:backdrop-blur-xl md:backdrop-saturate-150"
           : "border-transparent bg-transparent",
       )}
     >
@@ -135,7 +135,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.35, ease: [0.2, 0.8, 0.2, 1] }}
-            className="fixed inset-x-0 bottom-0 top-[76px] z-[59] overflow-y-auto bg-ink/[0.97] px-5 pb-10 pt-4 backdrop-blur-xl sm:px-8 xl:hidden"
+            className="fixed inset-x-0 bottom-0 top-[76px] z-[59] overflow-y-auto bg-ink px-5 pb-10 pt-4 sm:px-8 xl:hidden"
           >
             {nav.map((g) => (
               <div key={g.key}>

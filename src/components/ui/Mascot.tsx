@@ -22,13 +22,13 @@ export function Mascot({
       {...(decorative ? { "aria-hidden": true } : { role: "img", "aria-label": label })}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/images/mascot/base-sm.webp" alt="" width={400} height={444} />
+      <img loading="lazy" decoding="async" src="/images/mascot/base-sm.webp" alt="" width={400} height={444} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="blink" src="/images/mascot/blink-sm.webp" alt="" style={{ animationDelay: `${blinkDelay}s` }} />
+      <img loading="lazy" decoding="async" className="blink" src="/images/mascot/blink-sm.webp" alt="" style={{ animationDelay: `${blinkDelay}s` }} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="mouth-a" src="/images/mascot/mouthA-sm.webp" alt="" />
+      <img loading="lazy" decoding="async" className="mouth-a" src="/images/mascot/mouthA-sm.webp" alt="" />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="mouth-b" src="/images/mascot/mouthB-sm.webp" alt="" />
+      <img loading="lazy" decoding="async" className="mouth-b" src="/images/mascot/mouthB-sm.webp" alt="" />
     </div>
   );
 }

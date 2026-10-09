@@ -1,14 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/space-grotesk";
-import "@fontsource-variable/manrope";
-import "@fontsource/jetbrains-mono/400.css";
-import "@fontsource/jetbrains-mono/500.css";
 import "./globals.css";
 import { site } from "@/content/site";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingBuddy } from "@/components/layout/FloatingBuddy";
 import { HashLinkScroll } from "@/components/layout/HashLinkScroll";
+
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -28,6 +25,11 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: { card: "summary_large_image", title: site.name, description: site.description },
+  // Search Console / Bing Webmaster "HTML tag" verification — paste only the content="…" code into these env vars.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION } : undefined,
+  },
 };
 
 export const viewport: Viewport = { themeColor: "#05100C", width: "device-width", initialScale: 1 };
@@ -64,6 +66,11 @@ const orgJsonLd = [
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* brand fonts are preloaded so headlines paint in the final font straight away (see globals.css) */}
+        <link rel="preload" href="/fonts/space-grotesk.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/manrope.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      </head>
       <body suppressHydrationWarning>
         <a href="#main" className="sr-only z-[100] rounded-full bg-lime-brand px-4 py-2 text-text focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
           Skip to content

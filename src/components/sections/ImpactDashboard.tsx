@@ -34,7 +34,7 @@ export function ImpactDashboard() {
         <Reveal className="overflow-hidden rounded-[28px] border border-white/[0.09] bg-[linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015))] shadow-[inset_0_1px_0_rgba(255,255,255,.06),0_40px_120px_-40px_rgba(0,0,0,.8)]">
           <div className="flex items-center justify-between gap-4 border-b border-white/[0.07] px-7 py-[18px]">
             <div className="flex items-center gap-3">
-              <span className="h-2 w-2 animate-pulseRing rounded-full bg-emerald-brand" />
+              <span className="h-2 w-2 pulse-dot rounded-full bg-emerald-brand" />
               <span className="mono-label text-[11px] text-[#C3D1CA]">3R Impact Console</span>
             </div>
             <div aria-hidden className="flex gap-2">

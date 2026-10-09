@@ -71,7 +71,7 @@ export default async function PostPage({ params }: Props) {
         ]}
       />
       <section aria-labelledby="post-title" className="relative isolate -mt-[76px] overflow-hidden bg-ink pb-16 pt-[calc(76px+clamp(56px,7vw,96px))] text-[#F2F6F3]">
-        <span aria-hidden className="absolute right-[6%] top-[10%] -z-10 h-[380px] w-[380px] rounded-full bg-emerald-brand opacity-40 blur-[40px]" />
+        <span aria-hidden className="absolute right-[6%] top-[10%] -z-10 h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(43,208,139,.55)_0%,rgba(43,208,139,.18)_45%,transparent_70%)]" />
         <div className="container-site flex max-w-[960px] flex-col gap-6">
           <Link href="/blog" className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-lime-brand hover:text-white">
             <ArrowLeft aria-hidden className="h-4 w-4" /> All articles

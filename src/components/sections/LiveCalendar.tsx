@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
 function Pulse() {
-  return <span className="h-2 w-2 animate-pulseRing rounded-full bg-emerald-brand shadow-[0_0_0_0_rgba(43,208,139,.6)]" />;
+  return <span className="h-2 w-2 pulse-dot rounded-full bg-emerald-brand" />;
 }
 
 /** "LIVE · COP31 in 33 days" pill for the hero. */

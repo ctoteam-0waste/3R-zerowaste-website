@@ -37,7 +37,7 @@ export function PlayStoreBadge({ className = "" }: { className?: string }) {
       href={site.playStoreUrl}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Get the KarmaVerse app on Google Play"
+      aria-label="Get it on Google Play — KarmaVerse app"
       className={`inline-flex h-[52px] items-center gap-3 rounded-xl border border-white/20 bg-black px-4 text-white transition hover:-translate-y-0.5 hover:border-lime-brand hover:shadow-[0_12px_32px_-12px_rgba(200,242,106,.5)] ${className}`}
     >
       <svg aria-hidden viewBox="0 0 24 26" className="h-6 w-6 flex-none">

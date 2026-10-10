@@ -18,7 +18,6 @@ export const team: TeamMember[] = [
     bio: "25 yrs ESG — Oil & Gas, Utilities, Infra across 12 countries. 3R Tech (M) PVT. Certified ESG Professional (IFCA), Sustainability, ESG Vision & Leadership.",
     photo: "/images/team/shiv.webp",
     linkedin: "https://www.linkedin.com/in/shivchalla/",
-    founding: true,
   },
   {
     name: "Jayashree Rao",
@@ -26,7 +25,6 @@ export const team: TeamMember[] = [
     bio: "Zero-waste solutions expert. Driving ESG transformation & growth across UK & Europe. Leads UK/Europe business & ESG expansion.",
     photo: "/images/team/jayashree.webp",
     linkedin: "https://www.linkedin.com/in/jayashree-rao-198a4a1b3/",
-    founding: true,
   },
   {
     name: "Gourav Pati",
@@ -39,7 +37,7 @@ export const team: TeamMember[] = [
     name: "Krishan Kumar",
     role: "Waste Mgmt Operations Head",
     bio: "Waste-management operations specialist. Runs end-to-end collection, logistics & recycler network.",
-    photo: "/images/team/krishan.webp",
+    photo: "/images/team/krishan-2026.webp",
     linkedin: "https://www.linkedin.com/in/krishan-kumar-6924a61a4/",
   },
   {
@@ -47,7 +45,6 @@ export const team: TeamMember[] = [
     role: "Waste Executive Engineer",
     bio: "Waste-management engineer. Oversees segregation, processing & on-site execution across projects.",
     photo: "/images/team/rama.webp",
-    founding: true,
   },
   {
     name: "Shashi Shekhar",

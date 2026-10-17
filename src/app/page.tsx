@@ -12,6 +12,7 @@ import { Timeline } from "@/components/sections/Timeline";
 import { BlogSection } from "@/components/sections/BlogSection";
 import { Events } from "@/components/sections/Events";
 import { Partners } from "@/components/sections/Partners";
+import { FAQ } from "@/components/sections/FAQ";
 import { CTA } from "@/components/sections/CTA";
 import { getEvents } from "@/lib/content";
 
@@ -37,6 +38,7 @@ export default function HomePage() {
       <BlogSection />
       <Events upcoming={upcoming} past={past} />
       <Partners />
+      <FAQ />
       <CTA />
     </>
   );

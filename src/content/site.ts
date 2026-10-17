@@ -11,6 +11,9 @@ export const site = {
   tagline: "Turning sustainable gestures and everyday actions into measurable climate impact.",
   description:
     "Technology that transforms sustainable actions into measurable environmental and business impact.",
+  /** Meta/search snippet: says who, what and where in one line, so Google and AI answers can describe us. */
+  seoDescription:
+    "3R ZeroWaste is a Gurugram-based climate-tech and circular economy company offering ESG & BRSR reporting, EPR compliance, e-waste recycling, waste management and the KarmaVerse rewards app.",
   philosophy: "Kar Bhala Toh Ho Bhala",
   email: "contact@karmaverse.earth",
   karmaverseUrl: "https://karmaverse.earth",

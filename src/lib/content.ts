@@ -61,7 +61,28 @@ function toPost(slug: string, data: Record<string, unknown>, body: string): Post
     image: str(data.image),
     imageCredit: str(data.imageCredit),
     featured: data.featured === true,
+    keywords: keywordList(data.focusKeyword, data.keywords),
   };
+}
+
+function keywordList(...vals: unknown[]): string[] | undefined {
+  const all = vals.flatMap((v) => (Array.isArray(v) ? v : String(v ?? "").split(","))).map((k) => String(k).trim()).filter(Boolean);
+  return all.length ? [...new Set(all)] : undefined;
+}
+
+/** Pulls Q&A pairs from a "## Frequently asked questions" / "## FAQ" section (### question + answer) for FAQPage rich results. */
+function extractFaq(body: string) {
+  const m = body.match(/^##\s+(?:frequently asked questions|faqs?)\b.*$([\s\S]*?)(?=^##\s|(?![\s\S]))/im);
+  if (!m) return [];
+  return m[1]
+    .split(/^###\s+/m)
+    .slice(1)
+    .map((chunk) => {
+      const [q, ...rest] = chunk.split("\n");
+      const a = rest.join(" ").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[*_`>]/g, "").replace(/\s+/g, " ").trim();
+      return { q: q.replace(/[*_`]/g, "").trim(), a };
+    })
+    .filter((f) => f.q && f.a);
 }
 
 /** All published posts, newest first. */
@@ -74,7 +95,7 @@ export function getPosts(): Post[] {
 
 export function getPost(slug: string): PostWithBody | null {
   const hit = readDir("blog").find((p) => p.slug === slug && p.data.draft !== true);
-  return hit ? { ...toPost(hit.slug, hit.data, hit.content), html: render(hit.content) } : null;
+  return hit ? { ...toPost(hit.slug, hit.data, hit.content), html: render(hit.content), faq: extractFaq(hit.content) } : null;
 }
 
 /* ---------- Events ---------- */

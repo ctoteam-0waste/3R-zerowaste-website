@@ -29,6 +29,8 @@ export type Post = {
   /** Photo credit / licence shown under the cover on the article page. */
   imageCredit?: string;
   featured?: boolean;
+  /** SEO: main search phrase + related phrases (from front matter). */
+  keywords?: string[];
 };
 
-export type PostWithBody = Post & { html: string };
+export type PostWithBody = Post & { html: string; faq: { q: string; a: string }[] };

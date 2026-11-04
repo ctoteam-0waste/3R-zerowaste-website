@@ -6,6 +6,8 @@ import { useEffect, useMemo, useRef, useState, type ChangeEvent, type ReactNode 
 import { marked } from "marked";
 import { ArrowLeft, Bold, Check, Heading2, ImagePlus, Italic, Link2, List, Loader2, Quote, X } from "lucide-react";
 import { AdminBar } from "@/components/admin/AdminBar";
+import { AiWriter, type DraftPost } from "@/components/admin/AiWriter";
+import { SeoCheck } from "@/components/admin/SeoCheck";
 import { blogCategories } from "@/content/posts";
 
 type Kind = "blog" | "events";
@@ -24,7 +26,7 @@ const slugify = (s: string) =>
     .slice(0, 80);
 
 const EMPTY: Record<Kind, Data> = {
-  blog: { title: "", summary: "", category: "ESG", date: today(), author: "3R ZeroWaste Team", image: "", imageCredit: "", featured: false, draft: false },
+  blog: { title: "", summary: "", category: "ESG", date: today(), author: "3R ZeroWaste Team", focusKeyword: "", keywords: "", image: "", imageCredit: "", featured: false, draft: false },
   events: { title: "", type: "", summary: "", date: today(), endDate: "", time: "", venue: "", registerUrl: "", image: "", draft: false },
 };
 
@@ -85,7 +87,7 @@ export default function Editor() {
       }
       const d: Data = { ...EMPTY[kind] };
       for (const [k, v] of Object.entries(json.data as Record<string, unknown>)) {
-        d[k] = typeof v === "boolean" ? v : v instanceof Object ? String(v) : String(v ?? "");
+        d[k] = typeof v === "boolean" ? v : Array.isArray(v) ? v.join(", ") : v instanceof Object ? String(v) : String(v ?? "");
       }
       // YAML dates can arrive as full ISO strings
       for (const k of ["date", "endDate"]) if (typeof d[k] === "string") d[k] = (d[k] as string).slice(0, 10);
@@ -100,6 +102,26 @@ export default function Editor() {
     setData((d) => ({ ...d, [k]: v }));
     if (k === "title" && !slugTouched) setSlug(slugify(String(v)));
   };
+
+  /** Fills the form with an AI-written draft (the admin still reviews and publishes it). */
+  function applyDraft(p: DraftPost) {
+    setData((d) => ({
+      ...d,
+      title: p.title,
+      summary: p.summary,
+      category: blogCategories.includes(p.category as never) ? p.category : d.category,
+      focusKeyword: p.focusKeyword,
+      keywords: p.keywords.join(", "),
+    }));
+    setBody(p.body);
+    if (isNew) {
+      setSlug(slugify(p.slug || p.title));
+      setSlugTouched(true);
+    }
+    setTab("preview");
+    setStatus({ text: "AI draft ready — read it through, check facts, add a cover image, then Save draft or Publish." });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
   /** Wraps the selection (or inserts a placeholder) with Markdown syntax. */
   function wrap(before: string, after = "", placeholder = "text") {
@@ -225,6 +247,8 @@ export default function Editor() {
           </p>
         )}
 
+        {kind === "blog" && <AiWriter onDraft={applyDraft} hasContent={Boolean(body.trim() || String(data.title).trim())} />}
+
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
           {/* Main column */}
           <div className="flex flex-col gap-5 rounded-[22px] bg-white p-5 sm:p-6">
@@ -328,6 +352,14 @@ export default function Editor() {
                   <input type="checkbox" checked={Boolean(data.featured)} onChange={set("featured")} className="h-4 w-4 accent-emerald-600" />
                   Feature at the top of the blog
                 </label>
+                <hr className="border-text/10" />
+                <Field label="Focus keyword" hint="The main phrase people search on Google for this post.">
+                  <input className={input} value={String(data.focusKeyword)} onChange={set("focusKeyword")} />
+                </Field>
+                <Field label="Related keywords" hint="Comma separated.">
+                  <textarea className={`${input} min-h-[64px] py-2.5`} value={String(data.keywords)} onChange={set("keywords")} />
+                </Field>
+                <SeoCheck title={String(data.title)} summary={String(data.summary)} body={body} keyword={String(data.focusKeyword)} slug={slug} />
               </>
             ) : (
               <>

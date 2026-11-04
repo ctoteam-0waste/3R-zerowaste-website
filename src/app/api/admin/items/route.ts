@@ -41,7 +41,7 @@ type SaveBody = {
   image?: { base64: string; ext: string };
 };
 
-const BLOG_FIELDS = ["title", "summary", "category", "date", "author", "image", "imageCredit", "featured", "draft"];
+const BLOG_FIELDS = ["title", "summary", "category", "date", "author", "focusKeyword", "keywords", "image", "imageCredit", "featured", "draft"];
 const EVENT_FIELDS = ["title", "type", "summary", "date", "endDate", "time", "venue", "registerUrl", "image", "draft"];
 
 export async function POST(req: Request) {

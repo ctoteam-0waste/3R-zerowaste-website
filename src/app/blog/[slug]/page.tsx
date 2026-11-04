@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.title,
     description: post.summary,
+    keywords: post.keywords,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title: post.title,
@@ -62,7 +63,17 @@ export default async function PostPage({ params }: Props) {
             image: post.image ? [absolute(post.image)] : undefined,
             mainEntityOfPage: absolute(`/blog/${post.slug}`),
             inLanguage: "en-IN",
+            keywords: post.keywords?.join(", "),
           },
+          ...(post.faq.length
+            ? [
+                {
+                  "@context": "https://schema.org",
+                  "@type": "FAQPage",
+                  mainEntity: post.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+                },
+              ]
+            : []),
           breadcrumbs([
             { name: "Home", path: "/" },
             { name: "Blog", path: "/blog" },

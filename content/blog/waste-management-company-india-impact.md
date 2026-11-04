@@ -10,8 +10,9 @@ focusKeyword: waste management company in India
 keywords: >-
   waste diverted from landfill, resource recovery India, recycling company
   Gurugram, zero waste India, circular economy India, KarmaVerse rewards
-cover: 1
 image: /images/blog/waste-management-company-india-impact-mw233gug.webp
+draft: true
+cover: 1
 ---
 
 ---

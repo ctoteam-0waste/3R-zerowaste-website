@@ -42,8 +42,9 @@ export function parsePasted(raw: string): DraftPost | null {
   if (end < 0) return null;
   const meta: Record<string, string> = {};
   for (const line of text.slice(start + 4, end).split("\n")) {
-    const m = line.match(/^\s*([A-Za-z]+)\s*:\s*(.*)$/);
-    if (m) meta[m[1].toLowerCase()] = m[2].trim().replace(/^["']|["']$/g, "");
+    // tolerate "Focus keyword:", "**focusKeyword**:", "- slug:" etc.
+    const m = line.replace(/[*_]/g, "").match(/^\s*-?\s*([A-Za-z][A-Za-z _-]*?)\s*:\s*(.*)$/);
+    if (m) meta[m[1].toLowerCase().replace(/[^a-z]/g, "")] = m[2].trim().replace(/^["']|["']$/g, "");
   }
   const body = text.slice(end + 4).replace(/^-*\n/, "").trim();
   if (!meta.title || !body) return null;

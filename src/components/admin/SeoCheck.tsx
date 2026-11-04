@@ -2,19 +2,31 @@
 
 import { Check, X } from "lucide-react";
 
+const STOP = new Set(["a", "an", "the", "in", "of", "for", "to", "and", "on", "at", "by", "with", "is", "your", "our"]);
+
+/** Lowercase words only, no Markdown/punctuation/stop words — so "Company in India" matches "company-india" and "**company in India**". */
+const norm = (s: string) =>
+  ` ${s
+    .toLowerCase()
+    .replace(/\]\([^)]*\)/g, " ") // drop link targets, keep link text
+    .replace(/'s\b/g, "")
+    .split(/[^a-z0-9ऀ-ॿ]+/)
+    .filter((w) => w && !STOP.has(w))
+    .join(" ")} `;
+
 /** Live SEO checklist for the blog editor. */
 export function SeoCheck({ title, summary, body, keyword, slug }: { title: string; summary: string; body: string; keyword: string; slug: string }) {
-  const kw = keyword.trim().toLowerCase();
-  const text = body.toLowerCase();
+  const kw = norm(keyword).trim();
+  const needle = ` ${kw} `;
   const words = body.split(/\s+/).filter(Boolean).length;
-  const firstWords = text.split(/\s+/).slice(0, 100).join(" ");
-  const h2s = body.match(/^##\s.+$/gm) ?? [];
+  const firstWords = body.split(/\s+/).slice(0, 100).join(" ");
+  const h2s = body.match(/^#{2,3}\s.+$/gm) ?? [];
   const internal = (body.match(/\]\(\/[^)]*\)/g) ?? []).length;
-  const uses = kw ? text.split(kw).length - 1 : 0;
-  const has = (s: string) => Boolean(kw) && s.toLowerCase().includes(kw);
+  const uses = kw ? norm(body).split(needle).length - 1 : 0;
+  const has = (s: string) => Boolean(kw) && norm(s).includes(needle);
 
   const checks: { ok: boolean; label: string }[] = [
-    { ok: Boolean(kw), label: "Focus keyword set" },
+    { ok: Boolean(kw), label: kw ? `Checking for “${keyword.trim()}”` : "Focus keyword is empty — fill it in below" },
     { ok: title.length >= 30 && title.length <= 65, label: `Title length ${title.length}/65` },
     { ok: has(title), label: "Keyword in title" },
     { ok: summary.length >= 120 && summary.length <= 165, label: `Summary length ${summary.length} (120–165)` },

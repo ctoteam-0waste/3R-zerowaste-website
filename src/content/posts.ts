@@ -33,4 +33,4 @@ export type Post = {
   keywords?: string[];
 };
 
-export type PostWithBody = Post & { html: string; faq: { q: string; a: string }[] };
+export type PostWithBody = Post & { html: string; faq: { q: string; a: string }[]; toc: { id: string; text: string }[] };

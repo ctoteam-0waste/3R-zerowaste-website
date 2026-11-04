@@ -8,6 +8,7 @@ import { formatDate } from "@/lib/format";
 import { PostCard, PostCover } from "@/components/blog/PostCard";
 import { Newsletter } from "@/components/blog/Newsletter";
 import { PostCta } from "@/components/blog/PostCta";
+import { PostToc } from "@/components/blog/PostToc";
 import { ShareBar } from "@/components/blog/ShareBar";
 import { JsonLd, absolute, breadcrumbs, publisher } from "@/components/seo/JsonLd";
 
@@ -113,6 +114,7 @@ export default async function PostPage({ params }: Props) {
           ) : (
             <PostCover post={post} className="aspect-[21/9]" />
           )}
+          <PostToc toc={post.toc} />
           <div className="prose-3r mx-auto w-full max-w-[720px]" dangerouslySetInnerHTML={{ __html: post.html }} />
           <div className="mx-auto flex w-full max-w-[720px] flex-col gap-3 border-t border-text/[0.12] pt-7">
             <p className="text-lg font-semibold">Found this useful? Pass it on.</p>

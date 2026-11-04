@@ -44,6 +44,22 @@ function render(body: string) {
   return marked.parse(body, { async: false, gfm: true }) as string;
 }
 
+/** Gives every H2 an id (for the "In this article" list) and returns the list. */
+function withToc(html: string) {
+  const toc: { id: string; text: string }[] = [];
+  const used = new Set<string>();
+  const out = html.replace(/<h2>([\s\S]*?)<\/h2>/g, (_m, inner: string) => {
+    const text = inner.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"').trim();
+    const base = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "section";
+    let id = base;
+    for (let n = 2; used.has(id); n++) id = `${base}-${n}`;
+    used.add(id);
+    toc.push({ id, text });
+    return `<h2 id="${id}">${inner}</h2>`;
+  });
+  return { html: out, toc };
+}
+
 /* ---------- Blog ---------- */
 
 function toPost(slug: string, data: Record<string, unknown>, body: string): Post {
@@ -95,7 +111,7 @@ export function getPosts(): Post[] {
 
 export function getPost(slug: string): PostWithBody | null {
   const hit = readDir("blog").find((p) => p.slug === slug && p.data.draft !== true);
-  return hit ? { ...toPost(hit.slug, hit.data, hit.content), html: render(hit.content), faq: extractFaq(hit.content) } : null;
+  return hit ? { ...toPost(hit.slug, hit.data, hit.content), ...withToc(render(hit.content)), faq: extractFaq(hit.content) } : null;
 }
 
 /* ---------- Events ---------- */

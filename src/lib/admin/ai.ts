@@ -84,7 +84,7 @@ const SEO_RULES = `SEO and engagement requirements:
 - Structure with ## H2 sections (and ### H3 where useful) phrased the way people search, e.g. questions or "How to…". Keep paragraphs to 2–4 sentences.
 - Make it skimmable: bullet lists, a numbered step-by-step section or checklist where it fits, a Markdown table if comparing things, and **bold** for key terms.
 - Add 2–4 internal links in Markdown to the existing blog posts and site pages listed above, with descriptive anchor text (never "click here"). Only use paths from those lists. No external links unless it is an official government source you are certain of.
-- Include a short "Key takeaways" bullet list near the end.
+- Right after the opening hook, add a section exactly titled "## Key takeaways" with 3–5 short bullets, so skimmers get the value at a glance and keep reading.
 - End with a section exactly titled "## Frequently asked questions" containing 3–5 questions people really search, each as a ### H3 question followed by a 2–4 sentence answer.
 - Finish with a brief call to action after the FAQ, linking to /contact or /karmaverse as relevant.`;
 

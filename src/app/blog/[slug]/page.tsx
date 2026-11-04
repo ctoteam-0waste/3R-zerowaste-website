@@ -9,8 +9,14 @@ import { PostCard, PostCover } from "@/components/blog/PostCard";
 import { Newsletter } from "@/components/blog/Newsletter";
 import { PostCta } from "@/components/blog/PostCta";
 import { PostToc } from "@/components/blog/PostToc";
+import { Reactions } from "@/components/blog/Reactions";
 import { ShareBar } from "@/components/blog/ShareBar";
-import { JsonLd, absolute, breadcrumbs, publisher } from "@/components/seo/JsonLd";
+import {
+  JsonLd,
+  absolute,
+  breadcrumbs,
+  publisher,
+} from "@/components/seo/JsonLd";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -38,7 +44,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       authors: post.author ? [post.author] : undefined,
       images: post.image ? [{ url: post.image }] : undefined,
     },
-    twitter: { card: "summary_large_image", title: post.title, description: post.summary, images: post.image ? [post.image] : undefined },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.summary,
+      images: post.image ? [post.image] : undefined,
+    },
   };
 }
 
@@ -47,7 +58,10 @@ export default async function PostPage({ params }: Props) {
   if (!post) notFound();
 
   const all = getPosts().filter((p) => p.slug !== post.slug);
-  const related = [...all.filter((p) => p.category === post.category), ...all.filter((p) => p.category !== post.category)].slice(0, 3);
+  const related = [
+    ...all.filter((p) => p.category === post.category),
+    ...all.filter((p) => p.category !== post.category),
+  ].slice(0, 3);
 
   return (
     <>
@@ -61,7 +75,13 @@ export default async function PostPage({ params }: Props) {
             datePublished: post.date,
             dateModified: post.date,
             articleSection: post.category,
-            author: { "@type": post.author && !/team/i.test(post.author) ? "Person" : "Organization", name: post.author || "3R ZeroWaste" },
+            author: {
+              "@type":
+                post.author && !/team/i.test(post.author)
+                  ? "Person"
+                  : "Organization",
+              name: post.author || "3R ZeroWaste",
+            },
             publisher,
             image: post.image ? [absolute(post.image)] : undefined,
             mainEntityOfPage: absolute(`/blog/${post.slug}`),
@@ -73,7 +93,11 @@ export default async function PostPage({ params }: Props) {
                 {
                   "@context": "https://schema.org",
                   "@type": "FAQPage",
-                  mainEntity: post.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+                  mainEntity: post.faq.map((f) => ({
+                    "@type": "Question",
+                    name: f.q,
+                    acceptedAnswer: { "@type": "Answer", text: f.a },
+                  })),
                 },
               ]
             : []),
@@ -84,21 +108,43 @@ export default async function PostPage({ params }: Props) {
           ]),
         ]}
       />
-      <section aria-labelledby="post-title" className="relative isolate -mt-[76px] overflow-hidden bg-ink pb-16 pt-[calc(76px+clamp(56px,7vw,96px))] text-[#F2F6F3]">
-        <span aria-hidden className="absolute right-[6%] top-[10%] -z-10 h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(43,208,139,.55)_0%,rgba(43,208,139,.18)_45%,transparent_70%)]" />
+      <section
+        aria-labelledby="post-title"
+        className="relative isolate -mt-[76px] overflow-hidden bg-ink pb-16 pt-[calc(76px+clamp(56px,7vw,96px))] text-[#F2F6F3]"
+      >
+        <span
+          aria-hidden
+          className="absolute right-[6%] top-[10%] -z-10 h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(43,208,139,.55)_0%,rgba(43,208,139,.18)_45%,transparent_70%)]"
+        />
         <div className="container-site flex max-w-[960px] flex-col gap-6">
-          <Link href="/blog" className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-lime-brand hover:text-white">
+          <Link
+            href="/blog"
+            className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-lime-brand hover:text-white"
+          >
             <ArrowLeft aria-hidden className="h-4 w-4" /> All articles
           </Link>
           <p className="mono-label text-xs text-lime-brand">{post.category}</p>
-          <h1 id="post-title" className="font-semibold leading-[1.02] tracking-[-0.035em]" style={{ fontSize: "clamp(36px, 5vw, 72px)" }}>
+          <h1
+            id="post-title"
+            className="font-semibold leading-[1.02] tracking-[-0.035em]"
+            style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
+          >
             {post.title}
           </h1>
-          {post.summary && <p className="max-w-[720px] text-lg leading-relaxed text-[#C3D1CA]">{post.summary}</p>}
+          {post.summary && (
+            <p className="max-w-[720px] text-lg leading-relaxed text-[#C3D1CA]">
+              {post.summary}
+            </p>
+          )}
           <p className="mono-label text-[11px] text-[#8EA198]">
-            {formatDate(post.date)} · {post.readTime} read{post.author ? ` · ${post.author}` : ""}
+            {formatDate(post.date)} · {post.readTime} read
+            {post.author ? ` · ${post.author}` : ""}
           </p>
-          <ShareBar url={absolute(`/blog/${post.slug}`)} title={post.title} tone="dark" />
+          <ShareBar
+            url={absolute(`/blog/${post.slug}`)}
+            title={post.title}
+            tone="dark"
+          />
         </div>
       </section>
 
@@ -107,18 +153,40 @@ export default async function PostPage({ params }: Props) {
           {post.image ? (
             <figure className="flex flex-col gap-3">
               <div className="relative aspect-video overflow-hidden rounded-[28px]">
-                <Image quality={90} src={post.image} alt="" fill priority unoptimized={post.image.endsWith(".svg")} sizes="(max-width: 960px) 100vw, 960px" className="object-cover" />
+                <Image
+                  quality={90}
+                  src={post.image}
+                  alt=""
+                  fill
+                  priority
+                  unoptimized={post.image.endsWith(".svg")}
+                  sizes="(max-width: 960px) 100vw, 960px"
+                  className="object-cover"
+                />
               </div>
-              {post.imageCredit && <figcaption className="text-right text-xs text-[#6C7871]">{post.imageCredit}</figcaption>}
+              {post.imageCredit && (
+                <figcaption className="text-right text-xs text-[#6C7871]">
+                  {post.imageCredit}
+                </figcaption>
+              )}
             </figure>
           ) : (
             <PostCover post={post} className="aspect-[21/9]" />
           )}
           <PostToc toc={post.toc} />
-          <div className="prose-3r mx-auto w-full max-w-[720px]" dangerouslySetInnerHTML={{ __html: post.html }} />
-          <div className="mx-auto flex w-full max-w-[720px] flex-col gap-3 border-t border-text/[0.12] pt-7">
-            <p className="text-lg font-semibold">Found this useful? Pass it on.</p>
-            <ShareBar url={absolute(`/blog/${post.slug}`)} title={post.title} />
+          <div
+            className="prose-3r mx-auto w-full max-w-[720px]"
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
+          <div className="mx-auto flex w-full max-w-[720px] flex-col gap-7 border-t border-text/[0.12] pt-7">
+            <Reactions slug={post.slug} />
+            <div className="flex flex-col gap-3">
+              <p className="text-lg font-semibold">Pass it on.</p>
+              <ShareBar
+                url={absolute(`/blog/${post.slug}`)}
+                title={post.title}
+              />
+            </div>
           </div>
           <PostCta category={post.category} />
         </div>
@@ -127,7 +195,10 @@ export default async function PostPage({ params }: Props) {
       {related.length > 0 && (
         <section aria-labelledby="more-h" className="bg-paper pb-24 text-text">
           <div className="container-site flex flex-col gap-9">
-            <h2 id="more-h" className="border-t border-text/[0.12] pt-7 text-[28px] font-medium">
+            <h2
+              id="more-h"
+              className="border-t border-text/[0.12] pt-7 text-[28px] font-medium"
+            >
               Keep reading
             </h2>
             <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-7">

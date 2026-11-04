@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, LogOut } from "lucide-react";
+import { BarChart3, ExternalLink, LogOut } from "lucide-react";
 
 export function AdminBar({ children }: { children?: React.ReactNode }) {
   async function logout() {
@@ -20,6 +20,9 @@ export function AdminBar({ children }: { children?: React.ReactNode }) {
         </Link>
         <div className="flex items-center gap-2">
           {children}
+          <Link href="/admin/audience" className="inline-flex min-h-10 items-center gap-1.5 rounded-full px-3 text-sm font-semibold text-text-muted hover:bg-text/5">
+            <BarChart3 aria-hidden className="h-4 w-4" /> <span className="hidden sm:inline">Subscribers &amp; stats</span>
+          </Link>
           <a href="/" target="_blank" className="hidden min-h-10 items-center gap-1.5 rounded-full px-3 text-sm font-semibold text-text-muted hover:bg-text/5 sm:inline-flex">
             View site <ExternalLink aria-hidden className="h-3.5 w-3.5" />
           </a>

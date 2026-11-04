@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { Mascot } from "@/components/ui/Mascot";
 
-/** Newsletter sign-up → Mailchimp (via /api/newsletter, double opt-in). */
+/** Newsletter sign-up → saved via /api/newsletter (list is in /admin/audience). */
 export function Newsletter() {
   const [state, setState] = useState<"idle" | "busy" | "done">("idle");
   const [error, setError] = useState("");
@@ -38,7 +38,7 @@ export function Newsletter() {
             <p className="max-w-[460px] text-base leading-relaxed text-[#33413B]">New articles, event invites and KarmaVerse updates. No spam — unsubscribe anytime.</p>
             {state === "done" ? (
               <p role="status" className="font-semibold text-emerald-deep">
-                Almost there! Check your inbox and click the link to confirm.
+                Thanks — you&apos;re on the list.
               </p>
             ) : (
               <form onSubmit={onSubmit} className="flex max-w-[520px] flex-wrap gap-2.5">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BlogIndex } from "@/components/blog/BlogIndex";
+import { MostRead } from "@/components/blog/MostRead";
 import { Newsletter } from "@/components/blog/Newsletter";
 import { getPosts } from "@/lib/content";
 
@@ -26,6 +27,7 @@ export default function BlogPage() {
         </div>
       </section>
       <BlogIndex posts={getPosts()} />
+      <MostRead posts={getPosts().map(({ slug, title, category, readTime }) => ({ slug, title, category, readTime }))} />
       <Newsletter />
     </>
   );

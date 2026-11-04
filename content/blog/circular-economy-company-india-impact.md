@@ -1,15 +1,15 @@
 ---
-title: 'Waste Management Company in India: Our Impact in Numbers'
+title: 'Circular Economy Company in India: Our Impact in Numbers'
 summary: >-
-  3R ZeroWaste, a waste management company in India, has diverted 9,63,379 kg of
+  3R ZeroWaste, a circular economy company in India, has diverted 9,63,379 kg of
   waste across 50+ cities. See what the numbers mean and how you can help.
 category: Community & Events
 date: '2026-11-04'
 author: 3R ZeroWaste Team
-focusKeyword: waste management company in India
+focusKeyword: circular economy company in India
 keywords: >-
   waste diverted from landfill, resource recovery India, recycling company
-  Gurugram, zero waste India, circular economy India, KarmaVerse rewards
+  Gurugram, zero waste India, waste segregation at source, KarmaVerse rewards
 draft: true
 cover: 1
 image: /images/blog/waste-management-company-india-impact-mw21qso6.webp
@@ -17,7 +17,7 @@ image: /images/blog/waste-management-company-india-impact-mw21qso6.webp
 
 Most of us segregate our waste, hand it over, and never find out what happened next. Did it get recycled? Did it end up in a landfill anyway? It's hard to stay motivated when you can't see the result.
 
-So here is the result. As a **waste management company in India** working on the circular economy, 3R ZeroWaste has just been featured in the news. In this post we share the numbers behind that story, explain what they actually mean, and show how you, your office or your housing society can be part of the next milestone.
+So here is the result. As a **circular economy company in India**, 3R ZeroWaste has just been featured in the news. In this post we share the numbers behind that story, explain what they actually mean, and show how you, your office or your housing society can be part of the next milestone.
 
 ## What has 3R ZeroWaste achieved since 2020?
 
@@ -39,7 +39,7 @@ This matters because waste in a landfill is a lost resource. Mixed waste is also
 
 So 9,63,379 kg isn't just a number. It is close to 963 tonnes of material that went back into the economy instead of becoming somebody's problem.
 
-## How does a waste management company in India divert waste from landfill?
+## How does a circular economy company in India keep waste out of landfills?
 
 The details differ by city and by type of waste, but resource recovery generally follows these steps:
 
@@ -91,13 +91,13 @@ And tell us: **which number surprised you most?** Follow **@mykarmaverse** on In
 
 It means waste that was kept out of a landfill or dump and sent for recycling or other forms of resource recovery instead. This keeps useful materials such as plastic, paper and metal in use, and reduces the load on landfills. The more carefully waste is segregated at source, the more of it can be recovered.
 
-### How do I choose a waste management company in India?
+### How do I choose a recycling partner in India?
 
 Look for a partner that handles segregated waste properly, works with authorised recyclers (especially for e-waste), and can show you clear records of how much waste was collected and where it went. If your business has EPR or sustainability-reporting obligations, check that they can provide the data and documents you need. It also helps to choose a partner that trains and engages your people, since segregation starts with them.
 
 ### Why is waste segregation at source so important?
 
-Once wet and dry waste are mixed, much of the dry waste gets contaminated and becomes hard or impossible to recycle. Segregating at source keeps materials clean, makes sorting easier and is required under India's solid waste management rules. It is the simplest, highest-impact step any household or office can take.
+Once wet and dry waste are mixed, much of the dry waste gets contaminated and becomes hard or impossible to recycle. Segregating at source keeps materials clean, makes sorting easier and is required under India's solid waste rules. It is the simplest, highest-impact step any household or office can take.
 
 ### Can I earn rewards for recycling and other green actions?
 
@@ -109,6 +109,6 @@ Yes. The KarmaVerse app by 3R ZeroWaste rewards people with KarmaCoins for susta
 
 ## Let's build the next milestone together
 
-Every kilogram in our 9,63,379 started with someone deciding to do the right thing. Whether you're a company with compliance goals, a housing society ready for zero waste or someone who just wants to make a difference, there's a place for you here.
+Every kilogram in our 9,63,379 started with someone deciding to do the right thing, and that is what drives us as a circular economy company in India. Whether you're a company with compliance goals, a housing society ready for zero waste or someone who just wants to make a difference, there's a place for you here.
 
-[Talk to our team](/contact) about waste and circular economy solutions for your organisation, or [download KarmaVerse](/karmaverse) and start earning rewards for your everyday green actions. **Chhote steps, bada impact.** 🌍
+[Talk to our team](/contact) about recycling and circular economy solutions for your organisation, or [download KarmaVerse](/karmaverse) and start earning rewards for your everyday green actions. **Chhote steps, bada impact.** 🌍

@@ -11,6 +11,7 @@ keywords: >-
   waste diverted from landfill, resource recovery India, recycling company
   Gurugram, zero waste India, waste segregation at source, KarmaVerse rewards
 cover: 1
+featured: true
 image: /images/blog/waste-management-company-india-impact-mw21qso6.webp
 ---
 

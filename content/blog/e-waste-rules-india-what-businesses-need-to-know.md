@@ -6,7 +6,6 @@ date: 2026-10-06
 author: "3R ZeroWaste Team"
 cover: 1
 image: "/images/blog/e-waste.webp"
-featured: true
 ---
 
 Every office has one: the cupboard of dead laptops, tangled chargers, old UPS batteries and monitors nobody wants to throw away. International E-Waste Day, held every year on **14 October**, is a good moment to open that cupboard, because in India what happens next is no longer optional.

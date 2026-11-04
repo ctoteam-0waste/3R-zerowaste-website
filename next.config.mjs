@@ -34,6 +34,8 @@ const legacyRedirects = [
   ["/privacy-policy", "/privacy"],
   ["/terms-n-conditions", "/terms"],
   ["/disclaimer-statement", "/terms"],
+  // renamed blog posts
+  ["/blog/waste-management-company-india-impact", "/blog/circular-economy-company-india-impact"],
 ];
 
 /** @type {import('next').NextConfig} */

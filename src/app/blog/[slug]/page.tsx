@@ -7,6 +7,8 @@ import { getPost, getPosts } from "@/lib/content";
 import { formatDate } from "@/lib/format";
 import { PostCard, PostCover } from "@/components/blog/PostCard";
 import { Newsletter } from "@/components/blog/Newsletter";
+import { PostCta } from "@/components/blog/PostCta";
+import { ShareBar } from "@/components/blog/ShareBar";
 import { JsonLd, absolute, breadcrumbs, publisher } from "@/components/seo/JsonLd";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -95,6 +97,7 @@ export default async function PostPage({ params }: Props) {
           <p className="mono-label text-[11px] text-[#8EA198]">
             {formatDate(post.date)} · {post.readTime} read{post.author ? ` · ${post.author}` : ""}
           </p>
+          <ShareBar url={absolute(`/blog/${post.slug}`)} title={post.title} tone="dark" />
         </div>
       </section>
 
@@ -111,6 +114,11 @@ export default async function PostPage({ params }: Props) {
             <PostCover post={post} className="aspect-[21/9]" />
           )}
           <div className="prose-3r mx-auto w-full max-w-[720px]" dangerouslySetInnerHTML={{ __html: post.html }} />
+          <div className="mx-auto flex w-full max-w-[720px] flex-col gap-3 border-t border-text/[0.12] pt-7">
+            <p className="text-lg font-semibold">Found this useful? Pass it on.</p>
+            <ShareBar url={absolute(`/blog/${post.slug}`)} title={post.title} />
+          </div>
+          <PostCta category={post.category} />
         </div>
       </article>
 

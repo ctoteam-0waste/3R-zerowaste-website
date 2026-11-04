@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
-import { aiConfigured, ideasPrompt, suggestIdeas, writePost, writePrompt, type Length } from "@/lib/admin/ai";
+import { aiConfigured, ideasPrompt, socialPrompt, suggestIdeas, writePost, writePrompt, writeSocial, type Length } from "@/lib/admin/ai";
+import { site } from "@/content/site";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -28,11 +29,22 @@ export async function GET() {
  * POST { action: "prompt", for: "ideas" | "write", context, ... }          → returns the prompt text to paste into claude.ai
  */
 export async function POST(req: Request) {
-  const b = (await req.json().catch(() => null)) as { action?: string; for?: string; context?: string; focusKeyword?: string; length?: string } | null;
+  const b = (await req.json().catch(() => null)) as { action?: string; for?: string; context?: string; focusKeyword?: string; length?: string; post?: { title?: string; summary?: string; slug?: string; body?: string } } | null;
   const context = String(b?.context ?? "").slice(0, 4000);
   const focusKeyword = b?.focusKeyword?.slice(0, 120);
   const length = (["short", "standard", "long"].includes(String(b?.length)) ? b?.length : "standard") as Length;
+  const social = () => {
+    const p = b?.post ?? {};
+    return { title: String(p.title ?? "").slice(0, 300), summary: String(p.summary ?? "").slice(0, 1000), url: `${site.url}/blog/${String(p.slug ?? "")}`, body: String(p.body ?? "") };
+  };
   try {
+    if (b?.for === "social" || b?.action === "social") {
+      const p = social();
+      if (!p.title || p.body.trim().length < 50) return fail("Write or open a post first — the social posts are made from its title and article.", 400);
+      if (b.action === "prompt") return NextResponse.json({ prompt: socialPrompt(p) });
+      if (!aiConfigured()) return fail("No API key on the server — use the copy-paste mode with your Claude subscription.", 503);
+      return NextResponse.json({ social: await writeSocial(p) });
+    }
     if (b?.action === "prompt") {
       if (b.for === "write" && context.trim().length < 10) return fail("Describe the idea in at least a sentence.", 400);
       return NextResponse.json({ prompt: b.for === "write" ? writePrompt(context, focusKeyword, length) : ideasPrompt(context, length) });

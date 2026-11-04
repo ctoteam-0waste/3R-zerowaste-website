@@ -8,6 +8,7 @@ import { ArrowLeft, Bold, Check, Heading2, ImagePlus, Italic, Link2, List, Loade
 import { AdminBar } from "@/components/admin/AdminBar";
 import { AiWriter, type DraftPost } from "@/components/admin/AiWriter";
 import { SeoCheck } from "@/components/admin/SeoCheck";
+import { SocialPosts } from "@/components/admin/SocialPosts";
 import { blogCategories } from "@/content/posts";
 
 type Kind = "blog" | "events";
@@ -360,6 +361,7 @@ export default function Editor() {
                   <textarea className={`${input} min-h-[64px] py-2.5`} value={String(data.keywords)} onChange={set("keywords")} />
                 </Field>
                 <SeoCheck title={String(data.title)} summary={String(data.summary)} body={body} keyword={String(data.focusKeyword)} slug={slug} />
+                <SocialPosts post={{ title: String(data.title), summary: String(data.summary), slug, body }} />
               </>
             ) : (
               <>

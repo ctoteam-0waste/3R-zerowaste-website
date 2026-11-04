@@ -196,3 +196,61 @@ export async function writePost(input: { context: string; focusKeyword?: string;
   if (res.stop_reason === "max_tokens" || !res.parsed_output) throw new Error("The AI reply was cut off. Try a shorter length.");
   return res.parsed_output;
 }
+
+/* ---------- Social posts for a finished blog post ---------- */
+
+export type SocialInput = { title: string; summary: string; url: string; body: string };
+
+function socialAsk(p: SocialInput) {
+  return `Write social media posts to promote this blog post from ${site.name}. Each one must make people want to click the link and read it.
+
+Rules:
+- Lead with the most interesting fact, question or takeaway from the article — not "Check out our new blog".
+- Only use facts that appear in the article. Never invent numbers or claims.
+- Every post includes the link exactly as given: ${p.url}
+- Indian audience; plain, warm, confident English. Do not use the phrase "waste management".
+
+Write:
+1. Instagram caption: 80–150 words, a strong first line, short lines, a few emojis, a call to action ("link in bio" plus the link), then 8–12 relevant hashtags.
+2. LinkedIn post: 120–220 words for business readers (sustainability, compliance, CSR), a hook first line, short paragraphs, 3–5 hashtags.
+3. Facebook post: 60–120 words, friendly, with the link.
+4. X (Twitter) post: under 270 characters including the link, 1–2 hashtags.
+5. WhatsApp message: 40–80 words, easy to forward to housing society / office groups, with the link.
+
+The blog post:
+Title: ${p.title}
+Summary: ${p.summary}
+
+${p.body.slice(0, 12000)}`;
+}
+
+/** Copy-paste mode: the prompt to paste into claude.ai. */
+export function socialPrompt(p: SocialInput) {
+  return `${socialAsk(p)}
+
+Label each one clearly (Instagram, LinkedIn, Facebook, X, WhatsApp) so it is easy to copy.`;
+}
+
+const SocialSchema = z.object({
+  instagram: z.string(),
+  linkedin: z.string(),
+  facebook: z.string(),
+  x: z.string(),
+  whatsapp: z.string(),
+});
+export type SocialPosts = z.infer<typeof SocialSchema>;
+
+export async function writeSocial(p: SocialInput): Promise<SocialPosts> {
+  const res = await anthropic().beta.messages.parse({
+    model: MODEL,
+    max_tokens: 6000,
+    betas: ["server-side-fallback-2026-07-01"],
+    fallbacks: "default",
+    output_config: { effort: "low", format: betaZodOutputFormat(SocialSchema) },
+    system: brief(),
+    messages: [{ role: "user", content: socialAsk(p) }],
+  });
+  if (res.stop_reason === "refusal") throw new Error("The AI declined this request.");
+  if (!res.parsed_output) throw new Error("The AI reply could not be read. Please try again.");
+  return res.parsed_output;
+}

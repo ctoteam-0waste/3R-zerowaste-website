@@ -1,6 +1,7 @@
 import "server-only";
 import type { Post } from "@/content/posts";
 import { site } from "@/content/site";
+import { blogCtaAbsolute } from "@/lib/blogCta";
 
 /**
  * Public blog feed shared with other sites (karmaverse.earth reads it).
@@ -11,7 +12,7 @@ import { site } from "@/content/site";
 export const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, OPTIONS",
-  "Cache-Control": "public, max-age=300, s-maxage=300, stale-while-revalidate=3600",
+  "Cache-Control": "public, max-age=60, s-maxage=60, stale-while-revalidate=300",
 };
 
 const abs = (p?: string) => (!p ? undefined : p.startsWith("http") ? p : `${site.url}${p.startsWith("/") ? "" : "/"}${p}`);
@@ -30,6 +31,7 @@ export function feedItem(p: Post) {
     featured: Boolean(p.featured),
     keywords: p.keywords ?? [],
     url: `${site.url}/blog/${p.slug}`,
+    cta: blogCtaAbsolute(p.category),
   };
 }
 
